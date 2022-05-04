@@ -9,7 +9,7 @@ output:
 ---
 ## Overview
 
-The Abalone dataset was originally published at the UCI Machine Learning Repository, and can be found at https://archive.ics.uci.edu/ml/datasets/Abalone. The original stated problem is estimate the age an abalone, which can be determined from the number of rings in their shell. However, counting the number of rings in an abalone shell is an expensive method. Thus, one possible solution is predict the number of rings of an abalone from characteristics like height, diameter, lenght and weight measurements.
+The Abalone dataset was originally published at the UCI Machine Learning Repository, and can be found at https://archive.ics.uci.edu/ml/datasets/Abalone. The original stated problem is estimate the age an abalone, which can be determined from the number of rings in their shell. However, counting the number of rings in an abalone shell is an expensive method. Thus, one possible solution is to predict the number of rings of an abalone from characteristics like height, diameter, lenght and weight measurements.
 
 
 ```{r setup, include=FALSE}
@@ -161,18 +161,17 @@ lm_wflow <- workflow() %>%
 ### Question 6
 
 Use your `fit()` object to predict the age of a hypothetical female abalone with longest_shell = 0.50, diameter = 0.10, height = 0.30, whole_weight = 4, shucked_weight = 1, viscera_weight = 2, shell_weight = 1.
-```{r}
+```{r, results ='hide'}
 lm_fit <- fit(lm_wflow, abalone_train)
-lm_fit %>% 
-  # This returns the parsnip object:
-  extract_fit_parsnip() %>% 
-  # Now tidy the linear model object:
-  tidy()
 
 
-abalone_train_res <- predict(lm_fit, new_data = abalone_train %>% select(-age))
-abalone_train_res %>% 
-  head()
+hypo_abalone <- tibble(type = "F", longest_shell = 0.50,
+                       diameter = 0.10, height = 0.30, whole_weight = 4,
+                       shucked_weight = 1, viscera_weight = 2,
+                       shell_weight = 1, rings = 0)
+
+predict(lm_fit, new_data = hypo_abalone)
+
 ```
 
 ### Question 7

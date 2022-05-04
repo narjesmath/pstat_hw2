@@ -1608,8 +1608,8 @@ Learning Repository, and can be found at <a href="https://archive.ics.uci.edu/ml
 original stated problem is estimate the age an abalone, which can be
 determined from the number of rings in their shell. However, counting
 the number of rings in an abalone shell is an expensive method. Thus,
-one possible solution is predict the number of rings of an abalone from
-characteristics like height, diameter, lenght and weight
+one possible solution is to predict the number of rings of an abalone
+from characteristics like height, diameter, lenght and weight
 measurements.</p>
 </div>
 <div id="data-description" class="section level2">
@@ -1750,36 +1750,14 @@ hypothetical female abalone with longest_shell = 0.50, diameter = 0.10,
 height = 0.30, whole_weight = 4, shucked_weight = 1, viscera_weight = 2,
 shell_weight = 1.</p>
 <pre class="r"><code>lm_fit &lt;- fit(lm_wflow, abalone_train)
-lm_fit %&gt;% 
-  # This returns the parsnip object:
-  extract_fit_parsnip() %&gt;% 
-  # Now tidy the linear model object:
-  tidy()</code></pre>
-<pre><code>## # A tibble: 10 × 5
-##    term           estimate std.error statistic  p.value
-##    &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-##  1 (Intercept)    11.7        0.0728  160.     0       
-##  2 typeI          -0.799      0.115    -6.95   4.36e-12
-##  3 typeM           0.0742     0.0941    0.788  4.31e- 1
-##  4 longest_shell  -0.00251    0.244    -0.0103 9.92e- 1
-##  5 diameter        1.07       0.250     4.25   2.15e- 5
-##  6 height          0.394      0.0691    5.70   1.31e- 8
-##  7 whole_weight    3.76       0.390     9.65   9.86e-22
-##  8 shucked_weight -4.07       0.198   -20.6    1.17e-88
-##  9 viscera_weight -1.03       0.159    -6.47   1.13e-10
-## 10 shell_weight    1.47       0.175     8.42   5.31e-17</code></pre>
-<pre class="r"><code>abalone_train_res &lt;- predict(lm_fit, new_data = abalone_train %&gt;% select(-age))
-abalone_train_res %&gt;% 
-  head()</code></pre>
-<pre><code>## # A tibble: 6 × 1
-##   .pred
-##   &lt;dbl&gt;
-## 1  8.19
-## 2  9.70
-## 3 10.2 
-## 4  9.91
-## 5 10.3 
-## 6  6.81</code></pre>
+
+
+hypo_abalone &lt;- tibble(type = &quot;F&quot;, longest_shell = 0.50,
+                       diameter = 0.10, height = 0.30, whole_weight = 4,
+                       shucked_weight = 1, viscera_weight = 2,
+                       shell_weight = 1, rings = 0)
+
+predict(lm_fit, new_data = hypo_abalone)</code></pre>
 </div>
 <div id="question-7" class="section level3">
 <h3>Question 7</h3>
