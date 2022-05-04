@@ -1878,13 +1878,27 @@ being overfit.</p>
 subtracting <span class="math inline">\(E[\hat{f}(x_0)]\)</span></p></li>
 <li><p>From lecture slides #39</p></li>
 </ul>
-<p>$$ E[(y_0 - (x_0))^2]=Var((x_0))+[Bias((x_0))]^2+Var() \</p>
-<p>= E[((x_0)-E(x_0))^2] + [E[(x_0)]-f(x_0)]^2+Var() \</p>
-<p> if  we  take (x_0) = E[Y|X = x_0] \</p>
-<p> then \</p>
-<p> E[((x_0)-E(x_0))^2] = 0  and [E[(x_0)]-f(x_0)]^2 = 0 \</p>
-<p>= E[((x_0)-E(x_0))^2] + [E[(x_0)]-f(x_0)]^2+Var() = \</p>
-<p> Var() $$</p>
+<span class="math display">\[\begin{equation}
+E[(y_0 -
+\hat{f}(x_0))^2]=Var(\hat{f}(x_0))+[Bias(\hat{f}(x_0))]^2+Var(\epsilon)
+\\
+
+= E[(\hat{f}(x_0)-E\hat{f}(x_0))^2] +
+[E[\hat{f}(x_0)]-f(x_0)]^2+Var(\epsilon) \\
+
+\ if \ we \ take\ \hat{f}(x_0) =  E[Y|X = x_0] \\
+
+\ then \\
+
+\ E[(\hat{f}(x_0)-E\hat{f}(x_0))^2] = 0 \ and\
+[E[\hat{f}(x_0)]-f(x_0)]^2 = 0 \\
+
+= E[(\hat{f}(x_0)-E\hat{f}(x_0))^2] +
+[E[\hat{f}(x_0)]-f(x_0)]^2+Var(\epsilon) = \\
+
+\ Var(\epsilon)
+
+\end{equation}\]</span>
 </div>
 </div>
 </div>
